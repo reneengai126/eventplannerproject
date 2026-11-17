@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planner Demo · EventPlanner AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="planner-top">
+    <div class="eyebrow">Live demo</div>
+    <h1 style="font-size:clamp(1.8rem,3.5vw,2.6rem)">Describe your event. Get the whole plan.</h1>
+    <p class="muted" style="max-width:720px">One prompt → event vision & floor map, logistics sheet, budget spreadsheet, deadline checklist, invitation & VIP emails, and a supply order list linked to online stores. Runs on a local LLM through Ollama, with an instant template fallback.</p>
+  </section>
+
+  <section class="composer">
+    <div class="card">
+      <label for="prompt">Event description</label>
+      <textarea id="prompt" placeholder="e.g. Lunar New Year gala dinner for 300 students on Feb 7 at 6pm with a lion dance, red & gold decor, catered dinner and a photo booth. Budget $6,000."></textarea>
+      <div class="row" style="margin-top:10px" id="examples"></div>
+      <div class="row between" style="margin-top:14px">
+        <label class="check small"><input type="checkbox" id="useAI" checked> Use local AI (Ollama) to personalize the plan &amp; write emails</label>
+        <button class="btn gold lg" id="go">Generate plan</button>
+      </div>
+      <div class="progress" id="progress">
+        <ol id="steps"></ol>
+        <div class="ai-stream" id="stream"></div>
+        <div class="row" style="margin-top:8px"><button class="btn ghost sm" id="stopAI" style="display:none">Stop AI</button></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Event details</h3>
+      <p class="muted small" style="margin-top:-4px">Optional — anything left blank is read from your description.</p>
+      <div class="fields">
+        <label class="full">Club / organization<select id="club"></select></label>
+        <label class="full">Event type<select id="type"><option value="">Auto-detect from description</option></select></label>
+        <label>Date<input type="date" id="date"></label>
+        <label>Start time<input type="time" id="start"></label>
+        <label>Headcount<input type="number" id="headcount" min="5" placeholder="auto"></label>
+        <label>Budget ($)<input type="number" id="budget" min="0" placeholder="auto"></label>
+        <label class="full">Venue (if booked)<input id="venueName" placeholder="e.g. Student Center Ballroom"></label>
+      </div>
+    </div>
+  </section>
+
+  <section class="results" id="results">
+    <div class="plan-head">
+      <div>
+        <div class="eyebrow" id="planClub"></div>
+        <h2 id="planTitle" style="margin:0"></h2>
+        <div class="muted small" id="planMeta"></div>
+      </div>
+      <div class="row no-print">
+        <button class="btn ghost sm" id="savedBtn">My saved plans</button>
+        <button class="btn ghost sm" id="exportJson">Export plan</button>
+        <button class="btn sm" id="printBtn">Print / PDF</button>
+      </div>
+    </div>
+    <div class="tabs" id="tabs">
+      <button data-tab="vision" class="on">Vision &amp; Map</button>
+      <button data-tab="logistics">Logistics</button>
+      <button data-tab="budget">Budget</button>
+      <button data-tab="checklist">Checklist <span class="n" id="ckCount"></span></button>
+      <button data-tab="emails">Emails &amp; Invites</button>
+      <button data-tab="supplies">Supply Orders <span class="n" id="supCount"></span></button>
+    </div>
+    <div class="panel on" id="p-vision"></div>
+    <div class="panel" id="p-logistics"></div>
+    <div class="panel" id="p-budget"></div>
+    <div class="panel" id="p-checklist"></div>
+    <div class="panel" id="p-emails"></div>
+    <div class="panel" id="p-supplies"></div>
+  </section>
+</main>
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/planner.js"></script>
+</body>
+</html>

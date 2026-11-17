@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How it works · EventPlanner AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="club-hero">
+    <div class="eyebrow">How it works</div>
+    <h1>Events get canceled over paperwork, not ideas.</h1>
+    <p class="muted" style="max-width:760px">Student organizations planning on-campus events can't easily find the forms, approvals and deadlines they need. First-time officers inherit the role with little context, and the knowledge leaves with graduating seniors. EventPlanner AI gives every RSO president, events chair and treasurer a complete first draft of their event in under a minute.</p>
+  </section>
+
+  <section class="grid g4">
+    <div class="card"><h3>Money</h3><p class="muted small">Funding requests get cut for missing a deadline or a small required detail.</p></div>
+    <div class="card"><h3>Time</h3><p class="muted small">Hours per event spent asking offices which forms apply — and procedures keep changing.</p></div>
+    <div class="card"><h3>Opportunity</h3><p class="muted small">Events move or cancel because rooms were booked late or catering wasn't from an approved vendor.</p></div>
+    <div class="card"><h3>Continuity</h3><p class="muted small">Each new board relearns the same rules from scratch.</p></div>
+  </section>
+
+  <section class="band">
+    <h2>What happens when you hit "Generate"</h2>
+    <div class="grid g2" style="margin-top:16px">
+      <ol class="steps" style="padding:0">
+        <li><b>Parse the prompt.</b> Headcount, budget, date and time are pulled from your sentence; the event type (gala, panel, workshop, social, festival, performance, competition, fundraiser) is detected from keywords.</li>
+        <li><b>Instant plan.</b> A template engine builds the budget, run of show, staffing, checklist, emails, supply list and floor map, scaled to your headcount. This always works, even offline.</li>
+        <li><b>Local AI pass.</b> If Ollama is running, the model returns structured JSON (theme, palette, attendee journey, run of show, event-specific costs, supplies and tasks). Every value is validated before it's merged — unrealistic prices are dropped.</li>
+        <li><b>AI-written emails.</b> The member invitation and VIP/leadership email are written for your event and streamed into the editor. Any email can be rewritten with a different tone or instructions.</li>
+      </ol>
+      <div class="card">
+        <h3>Guardrails for accuracy</h3>
+        <ul class="small" style="padding-left:18px">
+          <li>The AI is told never to invent university policies, deadlines or vendor names.</li>
+          <li>Checklist items that depend on official policy are tagged <span class="tag verify">Verify with SGS/CSLE</span>.</li>
+          <li>All prices are labeled estimates; the budget is a live spreadsheet so treasurers can drop in real quotes.</li>
+          <li>Everything stays editable and exportable (CSV, .ics calendar, JSON, print/PDF).</li>
+        </ul>
+        <h3 style="margin-top:16px">Known gaps we're testing</h3>
+        <ul class="small muted" style="padding-left:18px;margin-bottom:0">
+          <li><b>Maintenance:</b> policies and vendor lists change yearly — someone has to own updates.</li>
+          <li><b>Endorsement:</b> SGS/CSLE may not want an unofficial tool giving advice.</li>
+          <li><b>Unwritten rules</b> that aren't in any document.</li>
+          <li><b>Adoption:</b> will officers switch from asking offices in person?</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="setup">
+    <h2>Set up the local AI (Ollama)</h2>
+    <div class="grid g2" style="margin-top:16px">
+      <div class="card">
+        <ol class="steps" style="padding:0;margin:0">
+          <li><b>Install Ollama</b> from <a href="https://ollama.com/download" target="_blank" rel="noopener">ollama.com/download</a> (Windows, Mac, Linux).</li>
+          <li><b>Pull a model</b> in a terminal:<br><code>ollama pull llama3.2</code><br><span class="muted small">Smaller/faster: <code>phi4-mini</code>, <code>gemma3:4b</code>. Better quality: <code>llama3.1:8b</code>, <code>qwen2.5:7b</code>.</span></li>
+          <li><b>Start this site</b> by double-clicking <code>Start-EventPlanner.bat</code>. It serves the site at <code>http://localhost:8080</code> — Ollama only accepts requests from localhost pages, not files opened directly.</li>
+          <li><b>Check the status pill</b> in the top-right corner. Green means connected; click it to choose a model.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>Connection status</h3>
+        <div id="aboutStatus" class="status-line">Checking…</div>
+        <p class="small muted">Hosting the site somewhere other than localhost? Allow it in Ollama by setting the environment variable <code>OLLAMA_ORIGINS</code> to your site's address and restarting Ollama.</p>
+        <button class="btn" onclick="EP.openSettings()">Open AI settings</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <h2>The team</h2>
+    <p class="muted">Built for ECON 385 by Renee Ngai, Alizay Hussain and Angela Zhang.</p>
+  </section>
+</main>
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script>
+  EP.chrome("about");
+  const show = async () => {
+    const s = await EP.ai.check();
+    const el = EP.$("#aboutStatus");
+    el.className = "status-line " + s;
+    el.innerHTML = s === "online" ? `Connected · ${EP.ai.models.length} model(s): <b>${EP.ai.models.map(EP.esc).join(", ")}</b>` : s === "nomodel" ? "Ollama is running but no models are installed — run <code>ollama pull llama3.2</code>" : "Not connected — the planner will use instant templates.";
+  };
+  show();
+</script>
+</body>
+</html>

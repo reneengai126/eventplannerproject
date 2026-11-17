@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EventPlanner AI</title>
+<meta name="description" content="AI event planning for student organizations: budgets, logistics, maps, checklists, invitations and supply orders from one prompt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<main>
+  <section class="hero wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">For RSO presidents, events chairs &amp; treasurers</div>
+        <h1>Plan the event, not the paperwork.</h1>
+        <p class="lead">Describe your event in one sentence. EventPlanner AI turns it into a budget spreadsheet, logistics sheet, floor map, deadline checklist, VIP invitations and a supply order list — in seconds, on a local AI that runs on your own computer.</p>
+        <div class="row" style="margin-top:22px">
+          <a class="btn gold lg" href="planner.html">Try the live demo</a>
+          <a class="btn ghost lg" href="clubs.html">Browse clubs</a>
+        </div>
+      </div>
+      <form class="hero-prompt" action="planner.html">
+        <div class="small" style="opacity:.8;margin-bottom:8px">What are you planning?</div>
+        <textarea name="prompt" id="heroPrompt" placeholder="Diwali night for 450 guests with dance performances, Indian buffet dinner and henna stations…"></textarea>
+        <div class="chips" id="heroChips"></div>
+        <input type="hidden" name="go" value="1">
+        <button class="btn gold" style="width:100%;justify-content:center">Generate my event plan →</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="grid g4">
+      <div class="card"><div class="stat">5+ hrs</div><div class="muted small">spent per small event on budgets, logistics &amp; emails today</div></div>
+      <div class="card"><div class="stat">20+ hrs</div><div class="muted small">for a large-scale event like a cultural night</div></div>
+      <div class="card"><div class="stat">~2 hrs</div><div class="muted small">just to write and target VIP &amp; leadership emails</div></div>
+      <div class="card"><div class="stat">&lt; 1 min</div><div class="muted small">to a full first draft with EventPlanner AI</div></div>
+    </div>
+    <p class="muted small" style="margin-top:8px">Time estimates from our interviews with student organization officers.</p>
+  </section>
+
+  <section class="band wrap">
+    <div class="eyebrow">One prompt, six deliverables</div>
+    <h2>Everything an events chair builds by hand</h2>
+    <div class="grid g3" style="margin-top:20px">
+      <div class="card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/></svg></div><h3>Vision &amp; event map</h3><p class="muted small">Theme, palette, attendee journey and an auto-scaled floor plan — banquet, theater, classroom, mixer or outdoor festival.</p></div>
+      <div class="card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></div><h3>Budget spreadsheet</h3><p class="muted small">Editable line items, live totals, contingency, funding sources, cost per guest and one-click "fit to budget". Exports to Sheets/Excel.</p></div>
+      <div class="card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Logistics sheet</h3><p class="muted small">Minute-by-minute run of show, staffing roles sized to your headcount, accessibility and contingency plans.</p></div>
+      <div class="card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h9"/></svg></div><h3>Deadline checklist</h3><p class="muted small">Every task dated backward from your event — SGS funding, room booking, approved vendors — flagged when it must be verified.</p></div>
+      <div class="card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div><h3>Invitations &amp; VIP emails</h3><p class="muted small">Member invites, personalized mail-merge for deans and leadership, sponsor and vendor requests — rewrite any of them with AI.</p></div>
+      <div class="card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.5 12h11L21 7H6"/></svg></div><h3>Supply order list</h3><p class="muted small">Quantities scaled to headcount with one-click search links to Amazon, Target, Walmart, Costco and WebstaurantStore.</p></div>
+    </div>
+  </section>
+
+  <section class="band wrap">
+    <div class="grid g2" style="align-items:center">
+      <div>
+        <div class="eyebrow">Private by design</div>
+        <h2>Your AI runs on your desktop</h2>
+        <p class="muted">EventPlanner AI connects to <b>Ollama</b>, so the language model (Llama, Phi, Mistral, Gemma…) runs locally. No API keys, no per-request fees, and your club's budget never leaves your computer. No Ollama? The demo still works with instant templates.</p>
+        <a class="btn ghost" href="about.html#setup">Set up local AI</a>
+      </div>
+      <div class="card">
+        <ol class="steps" style="padding:0;margin:0">
+          <li><b>Describe it.</b><br><span class="muted small">"Mid-Autumn festival on the quad for 150 people with mooncakes and lantern making."</span></li>
+          <li><b>Get the instant plan.</b><br><span class="muted small">Templates built from real club budgets fill every sheet immediately.</span></li>
+          <li><b>Local AI personalizes it.</b><br><span class="muted small">Theme, run of show, event-specific costs, supplies and emails written for <i>your</i> event.</span></li>
+          <li><b>Edit, export, send.</b><br><span class="muted small">Everything is editable; export CSV, calendar deadlines, print to PDF, or open emails in Gmail.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="band wrap">
+    <div class="row between"><div><div class="eyebrow">Club pages</div><h2>Built around your organization</h2></div><a class="btn ghost" href="clubs.html">All clubs →</a></div>
+    <div class="grid g3" id="featuredClubs" style="margin-top:16px"></div>
+  </section>
+</main>
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/clubs.js"></script>
+<script>
+  EP.chrome("home");
+  const chips = ["Cultural night for 300", "Alumni speaker panel", "Holi on the quad", "Board game social"];
+  const full = ["Cultural night for 300 guests with performances, catered dinner and a photo booth", "Alumni speaker panel for 120 students with a networking reception", "Holi color festival on the quad for 500 students with DJ and street food", "Board game and boba social for 80 new members"];
+  EP.$("#heroChips").innerHTML = chips.map((c, i) => `<span class="chip" data-i="${i}">${c}</span>`).join("");
+  EP.$("#heroChips").onclick = e => { const c = e.target.closest(".chip"); if (c) EP.$("#heroPrompt").value = full[c.dataset.i]; };
+  EP.$("#featuredClubs").innerHTML = EP.CLUBS.slice(0, 3).map(EP.clubCard).join("");
+</script>
+</body>
+</html>

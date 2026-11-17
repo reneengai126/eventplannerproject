@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clubs · EventPlanner AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="club-hero">
+    <div class="eyebrow">Club directory</div>
+    <div class="row between" style="align-items:flex-end">
+      <div><h1 style="margin-bottom:.15em">Every club gets its own planning hub</h1>
+      <p class="muted" style="margin:0;max-width:640px">Budget tracking, one-click plans for signature events, VIP contact lists and handoff notes that survive officer turnover.</p></div>
+      <button class="btn" id="addClubBtn">+ Add your club</button>
+    </div>
+    <div class="row" style="margin-top:20px"><input id="search" placeholder="Search clubs…" style="max-width:340px"></div>
+    <div class="filters" id="filters"></div>
+  </section>
+  <div class="grid g3" id="clubGrid"></div>
+  <p class="muted small" style="margin-top:18px">Clubs shown are sample organizations for the demo — add your own with the button above.</p>
+</main>
+
+<dialog id="addClub">
+  <form method="dialog" class="dlg">
+    <h3>Add your club</h3>
+    <label>Club name<input name="name" required></label>
+    <div class="fields">
+      <label>Abbreviation<input name="short" maxlength="4"></label>
+      <label>Category<select name="category"><option>Cultural</option><option>Professional</option><option>STEM</option><option>Performing Arts</option><option>Service</option><option>Academic</option><option>Sports</option><option>Other</option></select></label>
+      <label>Members<input type="number" name="members"></label>
+      <label>Semester budget ($)<input type="number" name="allocation"></label>
+      <label>Color<input type="color" name="color" value="#0d2b5e" style="height:40px;padding:4px"></label>
+      <label>Meets<input name="meets" placeholder="Tue 7pm · Room 101"></label>
+    </div>
+    <label>Mission<textarea name="mission" rows="2"></textarea></label>
+    <div class="row end"><button value="cancel" class="btn ghost" formnovalidate>Cancel</button><button value="save" class="btn">Create club page</button></div>
+  </form>
+</dialog>
+
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/clubs.js"></script>
+<script>EP.chrome("clubs"); EP.renderClubDirectory();</script>
+</body>
+</html>
